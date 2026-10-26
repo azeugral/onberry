@@ -18,8 +18,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Saira:wdth,wght@100..125,500..800&display=swap" rel="stylesheet">
-<link rel="preload" as="image" href="assets/img/hero-mirtilos.webp" imagesrcset="assets/img/hero-mirtilos-1300.webp 1300w, assets/img/hero-mirtilos.webp 1938w" imagesizes="100vw" media="(orientation: landscape)">
-<link rel="preload" as="image" href="assets/img/hero-mirtilos-mobile-1440.webp" imagesrcset="assets/img/hero-mirtilos-mobile-940.webp 940w, assets/img/hero-mirtilos-mobile-1440.webp 1440w" imagesizes="125vw" media="(orientation: portrait)">
+<link rel="preload" as="image" href="assets/img/hero-mirtilos-1920.webp" imagesrcset="assets/img/hero-mirtilos-1920.webp 1920w, assets/img/hero-mirtilos-2880.webp 2880w, assets/img/hero-mirtilos-3840.webp 3840w" imagesizes="max(100vw, 239vh)" media="(orientation: landscape)">
+<link rel="preload" as="image" href="assets/img/hero-mirtilos-mobile-1620.webp" imagesrcset="assets/img/hero-mirtilos-mobile-1080.webp 1080w, assets/img/hero-mirtilos-mobile-1620.webp 1620w, assets/img/hero-mirtilos-mobile-2160.webp 2160w" imagesizes="max(100vw, 56.25vh)" media="(orientation: portrait)">
 <link rel="stylesheet" href="assets/estilo.css">
 </head>
 <body>
@@ -65,11 +65,11 @@
   <div class="hero-midia" aria-hidden="true">
     <picture>
       <!-- em pé: arte vertical própria (9:16); deitado: arte panorâmica -->
-      <source media="(orientation: portrait)" sizes="125vw"
-        srcset="assets/img/hero-mirtilos-mobile-940.webp 940w, assets/img/hero-mirtilos-mobile-1440.webp 1440w">
-      <img class="hero-poster" src="assets/img/hero-mirtilos.webp"
-        srcset="assets/img/hero-mirtilos-1300.webp 1300w, assets/img/hero-mirtilos.webp 1938w" sizes="100vw"
-        alt="" width="1938" height="812" fetchpriority="high">
+      <source media="(orientation: portrait)" sizes="max(100vw, 56.25vh)"
+        srcset="assets/img/hero-mirtilos-mobile-1080.webp 1080w, assets/img/hero-mirtilos-mobile-1620.webp 1620w, assets/img/hero-mirtilos-mobile-2160.webp 2160w">
+      <img class="hero-poster" src="assets/img/hero-mirtilos-1920.webp"
+        srcset="assets/img/hero-mirtilos-1920.webp 1920w, assets/img/hero-mirtilos-2880.webp 2880w, assets/img/hero-mirtilos-3840.webp 3840w" sizes="max(100vw, 239vh)"
+        alt="" width="3840" height="1609" fetchpriority="high">
     </picture>
   </div>
   <div class="hero-veu" aria-hidden="true"></div>

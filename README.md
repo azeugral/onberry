@@ -37,10 +37,14 @@ One page informativa da **On Berry** (@onberrybrasil_), empresa nacional de dese
 
 O hero usa a **imagem fixa enviada pelo cliente**: mirtilos molhados com folhas, 1938×812 (original em `../_ref/hero-fixo/`).
 
-- **Arquivos:** `assets/img/hero-mirtilos.webp` (1938 px) e `-1300.webp`, escolhidos por `srcset`. Em tela em pé o `sizes` pede a maior, porque a foto aparece ampliada.
+- **Arquivos:**
+  - panorâmica: `assets/img/hero-mirtilos-{1920,2880,3840}.webp`;
+  - vertical: `hero-mirtilos-mobile-{1080,1620,2160}.webp`.
+- **Origem:** as artes do cliente (1938×812 e 940×1672) foram ampliadas 4x com **super-resolução EDSR** (OpenCV `dnn_superres`, `tools/ampliar.py`, pesos em `PROJETOS LRGZ/_ferramentas/superres`), reduzidas para 3840 / 2160 de largura e finalizadas com nitidez leve.
+- **Escolha do arquivo:** `sizes` = `max(100vw, 239vh)` na panorâmica e `max(100vw, 56.25vh)` na vertical, porque com `cover` a imagem fica mais larga que a tela. Com isso, cada aparelho baixa a menor versão que não amplia.
 - **PC e celular deitado:** a foto ocupa o hero inteiro com `object-position: 56%`, para o mirtilo principal ficar à direita do texto.
-- **Tela em pé (celular e tablet):** usa a **arte vertical do cliente** (`hero-mirtilos-mobile-940/1440.webp`, original 940×1672, 9:16) em tela cheia, via `<picture>` com `media="(orientation: portrait)"`. As frutas ficam no alto e o texto no escuro embaixo.
-- **Resolução:** as artes recebidas são menores que 4K (horizontal 1938×812, vertical 940×1672). A versão 1440 da vertical é uma ampliação Lanczos com nitidez leve. Para ficar perfeito em iPhone 3x, pedir a vertical em **2160×3840** e a horizontal em **3840×2160** (zonas seguras no histórico da conversa/memória).
+- **Tela em pé (celular e tablet):** usa a **arte vertical do cliente** em tela cheia, via `<picture>` com `media="(orientation: portrait)"`. As frutas ficam no alto e o texto no escuro embaixo.
+- **Para ficar perfeito:** artes nativas em 3840×2160 (horizontal) e 2160×3840 (vertical). A super-resolução limpa as bordas, mas não recria detalhe que a arte original não tem.
 - **Animação:** só um fade de entrada; a imagem é estática.
 - **Histórico:** antes houve um loop MP4 (`../_ref/render/hero-mp4-eletrico/`) e uma sequência de 120 quadros pela rolagem (protótipo `_prototipos/mirtilos-gotas`). O cliente preferiu a imagem fixa.
 - **OG (`assets/img/og.jpg`):** usa a mesma foto com a logo oficial.
