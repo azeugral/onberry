@@ -42,56 +42,52 @@ No site, o vídeo é escolhido pela orientação da tela (retrato ou paisagem) e
 
 ## Fotos
 
-As fotos são reais, do Instagram da marca (originais em `../_ref/ig`), recortadas por `tools/processar.py fotos`: embalagem de 125 g, flor do mirtilo, plantio em vasos, colheita de uva, parreiral e uvas em bandeja. A resolução é baixa (até 1125 px), então **substituir pelas fotos que o cliente vai enviar**.
+As fotos são reais, dos posts da marca de 2026 (originais em `../_ref/ig`), recortadas por `tools/processar.py fotos`: embalagem de 125 g, flor do mirtilo e plantio em vasos. A resolução é baixa (até 1125 px), então **substituir pelas fotos que o cliente vai enviar**.
 
-## CONFIRMAR com o cliente
+As fotos de uva (posts de 2019 e 2020) **saíram do site** porque não dá para garantir que sejam deles: a da colheita tem moldura e parece repost ou banco de imagem. Elas estão guardadas em `../_ref/fotos-uva-duvidosas/`.
 
-Os dados abaixo estão **genéricos ou presumidos** e precisam da versão correta:
+## Regra do conteúdo: só o comprovado
 
-- [ ] **WhatsApp comercial:** está como `(00) 00000-0000`.
-- [ ] **E-mail:** está como `contato@onberry.com.br`. O domínio `onberry.com` **não é deles**, ele redireciona para outra marca (lontreau.com). Definir o domínio do site.
-- [ ] **Cidade e endereço:** hoje aparece só "Vale do São Francisco". Confirmar se é Petrolina (PE), Juazeiro (BA), Lagoa Grande, Casa Nova etc.
-- [ ] **Nome da marca:** o Instagram diz "On Berry", a embalagem diz "ON BERRIES" e a foto de perfil, "On-Berry". O site usa **On-Berry**, como na logo oficial.
-- [ ] **Uvas:** quais variedades (com ou sem semente, cores) e se a uva é produção própria ou só comercialização. A bio fala em "comercialização de Berrys e Uvas".
-- [ ] **Mirtilo:** variedades, área plantada, número de plantas, ano de início e época de safra.
-- [ ] **Processo (seção Cultivo):** plantio em vasos e irrigação localizada vêm das fotos. Colheita em várias passadas e refrigeração até a expedição são o padrão do mirtilo; confirmar como eles fazem.
-- [ ] **Conservação:** "refrigerado entre 0 e 4 °C" é uma orientação genérica.
-- [ ] **Selos da seção A empresa:** confirmar "Produção própria", "Cultivo sustentável" (este está no rótulo) e "Mercado nacional". Exportam?
-- [ ] **Certificações:** GlobalG.A.P., orgânico etc., se tiverem, para criar uma faixa de selos.
-- [ ] **Logo em vetor:** o arquivo oficial é PNG/WebP (1254 px). Pedir o vetor (SVG/AI/PDF) ao cliente.
+Desde 26/10, o site só afirma sobre a empresa o que está na **bio do Instagram** e na **embalagem**. Tudo o mais é fato geral da região ou da fruta, escrito como geral.
 
-## O que é verídico e o que é genérico
+**Sobre a On-Berry (comprovado):**
 
-**Comprovado (fonte: Instagram e embalagem):**
+- empresa nacional de desenvolvimento agrícola, voltada à comercialização de berries e uvas do Vale do São Francisco (bio);
+- a embalagem: mirtilo, cultivo sustentável, produzido no Vale São Francisco, cumbuca de 125 g, rótulo "On Berries · Fresh & Natural";
+- plantio de mirtilo em vasos sobre cobertura de solo, e flores e frutos (fotos deles);
+- o Instagram @onberrybrasil_.
 
-- A bio: empresa nacional de desenvolvimento agrícola, voltada à comercialização de berries e uvas do Vale do São Francisco.
-- A embalagem: "Mirtilo · Cultivo Sustentável · Produzido no Vale São Francisco · 125 g".
-- As fotos de embalagem, flor e plantio em vasos (posts deles de ago e set/2026).
-- O @onberrybrasil_.
+**Sobre a região e a fruta (fatos públicos):**
 
-**Verdadeiro, mas é da região ou da fruta, não da empresa:**
+- cerca de 3.000 h de sol por ano;
+- até 2,5 safras de uva por ano;
+- latitude de ~9° S;
+- irrigação com água do Rio São Francisco;
+- clima seco, com menos doenças fúngicas;
+- principal região exportadora de uva de mesa;
+- antocianinas, pruína, variedades de baixa exigência de frio, maturação escalonada do mirtilo e lavar só na hora.
 
-- 3.000 h de sol por ano, 2,5 safras de uva por ano, ~9° S.
-- O Vale como principal polo de uva de mesa, a irrigação pelo rio e o clima seco.
-- Antocianinas, pruína, mirtilo de baixa exigência de frio e "lavar na hora".
+**O que saiu:**
 
-**Genérico ou presumido (escrito para o corpo da página, falta confirmar):**
+- "cultivamos" e "produção própria";
+- variedades, irrigação controlada e acompanhamento técnico;
+- sabor, colheita manual e conservação entre 0 e 4 °C;
+- "uvas colhidas à mão" e "mercado nacional";
+- WhatsApp e e-mail placeholder (no contato ficou só o Instagram);
+- as fotos de uva.
 
-- Que a On-Berry *cultiva*: a bio só fala em comercialização. As fotos de plantio sugerem cultivo próprio.
-- As variedades adaptadas ao calor, a irrigação controlada e o acompanhamento técnico.
-- O sabor, a colheita manual, a seleção e a conservação entre 0 e 4 °C.
-- A linha de uvas "cultivadas em parreiral e colhidas à mão".
-- **Fotos de uva:** são posts de 2019/2020 e a da colheita tem moldura, então pode ser repost ou banco de imagem. Não há garantia de que sejam deles.
-- As 4 etapas do cultivo e os selos "Produção própria" e "Mercado nacional".
-- O WhatsApp e o e-mail (placeholders).
-- O hero e a faixa da pruína são render 3D ilustrativo, não fotografia.
+O hero e a faixa da pruína são **render 3D ilustrativo**, não fotografia da empresa.
 
-## Dados regionais usados (públicos, não são da empresa)
+## Para acrescentar quando o cliente enviar
 
-- Mais de 3.000 horas de sol por ano no Vale do São Francisco.
-- Até 2,5 safras de uva por ano no polo irrigado.
-- Latitude de cerca de 9° S (Petrolina/Juazeiro).
-- O Vale é o principal polo de uva de mesa do país.
+- [ ] **WhatsApp comercial e e-mail:** voltam para a lista de canais em `#contato`. O domínio `onberry.com` **não é deles** (redireciona para lontreau.com).
+- [ ] **Cidade e endereço:** Petrolina (PE)? Juazeiro (BA)? Outra?
+- [ ] **Nome:** Instagram "On Berry", embalagem "ON BERRIES", logo "On-Berry". O site usa **On-Berry**.
+- [ ] **Se cultivam** (produção própria) ou só comercializam; área, plantas, variedades e safra.
+- [ ] **Uvas:** variedades, origem e fotos próprias.
+- [ ] **Processo real:** colheita, seleção, câmara fria.
+- [ ] **Certificações** (GlobalG.A.P. etc.) e se exportam.
+- [ ] **Logo em vetor:** o arquivo oficial é PNG/WebP (1254 px). Pedir o vetor (SVG/AI/PDF).
 
 ## Ferramentas
 

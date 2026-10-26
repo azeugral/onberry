@@ -290,6 +290,11 @@ body.menu-aberto { overflow: hidden; }
 /* uvas */
 .grade-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(16px, 2.4vw, 32px); }
 
+.secao-curta { padding: clamp(72px, 9vw, 120px) 0; }
+.uvas { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(32px, 6vw, 96px); align-items: start; }
+.uvas .titulo { margin-bottom: 0; }
+.uvas-texto p:not(.texto-grande) { color: var(--tinta-2); margin: 0; }
+
 /* cultivo */
 .largo { margin: 0 auto clamp(48px, 6vw, 80px); max-width: 980px; }
 .largo .foto-quadro { aspect-ratio: 16 / 9; }
@@ -363,7 +368,7 @@ a.canal-valor:hover { background-size: 100% 1px; }
   .etapas { grid-template-columns: repeat(2, 1fr); row-gap: 44px; }
 }
 @media (max-width: 900px) {
-  .empresa, .mirtilo, .contato { grid-template-columns: 1fr; }
+  .empresa, .mirtilo, .contato, .uvas { grid-template-columns: 1fr; }
   .mirtilo-foto { max-width: 520px; width: 100%; margin: 0 auto; }
   .fatos { grid-template-columns: 1fr; gap: 0; }
   .fato { padding: 24px 0; }
@@ -385,10 +390,7 @@ a.canal-valor:hover { background-size: 100% 1px; }
   .hero-faixa { position: static; grid-template-columns: 1fr; padding-bottom: calc(24px + env(safe-area-inset-bottom)); }
   .hero-faixa li { flex-direction: row; justify-content: space-between; padding: 12px 0; gap: 16px; }
   .hero-faixa li:last-child { border-bottom: 1px solid var(--linha-clara); }
-  .grade-3 { grid-template-columns: 1fr 1fr; }
   .vale-itens { grid-template-columns: 1fr; }
-  #uvas .foto:nth-child(3) { grid-column: 1 / -1; }
-  #uvas .foto:nth-child(3) .foto-quadro { aspect-ratio: 16 / 11; }
   .numeros { grid-template-columns: 1fr; }
   .numero + .numero { border-left: 0; border-top: 1px solid var(--linha-clara); }
   .numero { padding: 32px 0; }
@@ -408,8 +410,6 @@ a.canal-valor:hover { background-size: 100% 1px; }
 @media (max-width: 360px) {
   .hero-titulo { font-size: 2.45rem; }
   .titulo { font-size: 2rem; }
-  .grade-3 { grid-template-columns: 1fr; }
-  #uvas .foto:nth-child(3) .foto-quadro { aspect-ratio: 4 / 5; }
 }
 /* celular deitado: hero não pode estourar */
 @media (max-height: 520px) and (orientation: landscape) {

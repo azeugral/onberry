@@ -21,9 +21,6 @@ FOTOS = {
     "flor": ("02_2026-08-07_DbwFAaqP2Fm.jpg", 4 / 5, 0.20, 1000),
     "plantio": ("03_2026-08-07_DbwDNVpPEjx.jpg", 4 / 5, 0.38, 1000),
     "plantio-largo": ("03_2026-08-07_DbwDNVpPEjx.jpg", 16 / 10, 0.42, 1125),
-    "colheita-uva": ("05_2020-09-21_CFYM_atFlpq.jpg", 4 / 5, 0.5, 980),
-    "parreiral": ("11_2019-09-19_B2lmbgUFanE.jpg", 4 / 5, 0.5, 556),
-    "uvas-bandeja": ("08_2019-11-03_B4Z4sLXldaN.jpg", 4 / 5, 0.5, 620),
 }
 
 
