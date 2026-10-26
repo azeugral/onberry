@@ -162,13 +162,19 @@ h1, h2, h3 { font-family: var(--display); font-stretch: 125%; font-weight: 700; 
 body.menu-aberto { overflow: hidden; }
 
 /* ---------- hero ---------- */
-.hero { position: relative; min-height: 100vh; min-height: 100svh; display: flex; flex-direction: column; justify-content: center; overflow: hidden; isolation: isolate; background: var(--abismo); }
+/* hero: trilho de rolagem com palco fixo. Parado no quadro 034; a sequência só anda com o scroll */
+.hero { position: relative; background: var(--abismo); }
+.palco {
+  --sai: 0;
+  position: relative; min-height: 100vh; min-height: 100svh;
+  display: flex; flex-direction: column; justify-content: center; overflow: hidden; isolation: isolate;
+}
+.js .hero.rolagem { height: 250vh; height: 250svh; }
+.js .hero.rolagem .palco { position: sticky; top: 0; height: 100vh; height: 100svh; min-height: 0; }
 .hero-midia { position: absolute; inset: 0; z-index: -2; }
-.hero-poster, .hero-video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
-.hero-poster { transform: scale(1.05); animation: heroZoom 2.6s var(--ease) forwards; }
-.hero-video { opacity: 0; transition: opacity 1.4s var(--ease); }
-.hero-video.pronto { opacity: 1; }
-@keyframes heroZoom { to { transform: scale(1); } }
+.hero-poster, .hero-tela { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
+.hero-tela { opacity: 0; transition: opacity .6s var(--ease); }
+.hero-tela.pronto { opacity: 1; }
 .hero-veu {
   position: absolute; inset: 0; z-index: -1;
   background:
@@ -176,7 +182,8 @@ body.menu-aberto { overflow: hidden; }
     linear-gradient(0deg, var(--abismo) 0%, rgba(2,6,25,0) 24%),
     linear-gradient(180deg, rgba(2,6,25,.6) 0%, rgba(2,6,25,0) 20%);
 }
-.hero-conteudo { width: 100%; max-width: calc(var(--caixa) + 2 * var(--gutter)); margin: 0 auto; padding: 150px var(--gutter) 170px; }
+.hero-conteudo { width: 100%; max-width: calc(var(--caixa) + 2 * var(--gutter)); margin: 0 auto; padding: 150px var(--gutter) 170px;
+  opacity: calc(1 - var(--sai)); transform: translate3d(0, calc(var(--sai) * -48px), 0); }
 .hero-titulo {
   font-size: clamp(2.3rem, .9rem + 5vw, 5.4rem); line-height: 1; letter-spacing: -.02em;
   max-width: 13ch; margin-bottom: 28px; text-wrap: balance;
@@ -186,6 +193,7 @@ body.menu-aberto { overflow: hidden; }
 .hero-texto { max-width: 33rem; font-size: clamp(1.02rem, .97rem + .3vw, 1.16rem); color: var(--texto-2); margin-bottom: 38px; }
 .hero-acoes { display: flex; flex-wrap: wrap; gap: 14px; }
 .hero-faixa {
+  opacity: calc(1 - var(--sai));
   position: absolute; left: 0; right: 0; bottom: 0; width: 100%;
   max-width: calc(var(--caixa) + 2 * var(--gutter)); margin: 0 auto; padding: 0 var(--gutter) calc(32px + env(safe-area-inset-bottom));
   list-style: none; display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px;
@@ -202,7 +210,9 @@ body.menu-aberto { overflow: hidden; }
 .hero-conteudo .hero-item:nth-child(2) { animation-delay: .38s; }
 .hero-conteudo .hero-item:nth-child(3) { animation-delay: .52s; }
 .hero-conteudo .hero-item:nth-child(4) { animation-delay: .66s; }
-.hero-faixa.hero-item { animation-delay: .85s; }
+.hero-faixa li { opacity: 0; transform: translateY(26px); animation: sobe 1.2s var(--mola) .85s forwards; }
+.hero-faixa li:nth-child(2) { animation-delay: .93s; }
+.hero-faixa li:nth-child(3) { animation-delay: 1.01s; }
 @keyframes sobe { to { opacity: 1; transform: none; filter: none; } }
 
 /* ---------- seções ---------- */
@@ -361,7 +371,7 @@ a.canal-valor:hover { background-size: 100% 1px; }
 .js .visto .foto-quadro { clip-path: polygon(0 0, calc(100% - 18px) 0, 100% 18px, 100% 100%, 18px 100%, 0 calc(100% - 18px)); }
 
 @media (prefers-reduced-motion: reduce) {
-  .hero-item, .hero-poster { animation: none; opacity: 1; transform: none; filter: none; }
+  .hero-item, .hero-faixa li { animation: none; opacity: 1; transform: none; filter: none; }
   .js [data-r] { opacity: 1; transform: none; filter: none; transition: none; }
   .js .foto-quadro { clip-path: polygon(0 0, calc(100% - 18px) 0, 100% 18px, 100% 100%, 18px 100%, 0 calc(100% - 18px)); transition: none; }
   .foto-quadro img, .pruina-img img { transform: none !important; }
@@ -386,13 +396,12 @@ a.canal-valor:hover { background-size: 100% 1px; }
   .topo { padding-top: calc(8px + env(safe-area-inset-top)); }
   .topo-in { height: 60px; padding-left: 16px; }
   .topo-logo img { height: 38px; }
-  .hero { justify-content: flex-end; }
+  .palco { justify-content: flex-end; }
   .hero-veu { background: linear-gradient(0deg, rgba(2,6,25,.97) 0%, rgba(2,6,25,.84) 40%, rgba(2,6,25,.15) 70%, rgba(2,6,25,.4) 100%); }
-  .hero-conteudo { padding: 130px var(--gutter) 26px; }
+  .hero-conteudo { padding: 110px var(--gutter) calc(40px + env(safe-area-inset-bottom)); }
   .hero-texto { margin-bottom: 28px; }
   .hero-acoes .btn { flex: 1 1 100%; }
-  .hero-faixa { position: static; grid-template-columns: 1fr; gap: 8px; padding-bottom: calc(24px + env(safe-area-inset-bottom)); }
-  .hero-faixa li { flex-direction: row; justify-content: space-between; align-items: center; padding: 14px 16px; }
+  .hero-faixa { display: none; }
   .numeros { grid-template-columns: 1fr; }
   .largo .foto-quadro { aspect-ratio: 4 / 3; }
   .ficha { padding: 4px 20px; }
@@ -409,13 +418,20 @@ a.canal-valor:hover { background-size: 100% 1px; }
   .rodape-base { justify-content: center; text-align: center; }
   .ficha div { grid-template-columns: 1fr; gap: 4px; padding: 14px 0; }
 }
+@media (max-height: 640px) and (orientation: portrait) {
+  .hero-conteudo { padding-top: 92px; }
+  .hero .chapeu { margin-bottom: 14px; }
+  .hero-titulo { margin-bottom: 18px; }
+  .hero-texto { margin-bottom: 22px; }
+  .hero-acoes .btn { min-height: 50px; }
+}
 @media (max-width: 360px) {
   .hero-titulo { font-size: 2.05rem; }
   .titulo { font-size: 1.7rem; }
   .btn { font-size: .74rem; padding-left: 18px; }
 }
 @media (max-height: 520px) and (orientation: landscape) {
-  .hero { min-height: auto; justify-content: flex-start; }
+  .palco { justify-content: flex-start; }
   .hero-conteudo { padding: 104px var(--gutter) 32px; }
   .hero-titulo { font-size: clamp(2rem, 5.4vw, 3rem); max-width: 18ch; }
   .hero-faixa { position: static; }

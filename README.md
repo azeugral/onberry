@@ -33,21 +33,19 @@ One page informativa da **On Berry** (@onberrybrasil_), empresa nacional de dese
   - `assets/logo/horizontal-clara.svg` / `horizontal-escura.svg`: versão de leitura para o topo e para textos. É o símbolo oficial + "On-Berry" em Saira expandida 600 + a folhinha azul da logo.
 - A proposta de marca da LRGZ (mirtilo com coroa) foi descartada e está guardada em `../_ref/logo-proposta-lrgz/`.
 
-## Hero (mirtilos caindo)
+## Hero (sequência de quadros pela rolagem)
 
-A cena 3D é renderizada no Blender 5.2 (Cycles) por `tools/mirtilos.py`:
+O hero toca **120 quadros renderizados em 4K** (mirtilos molhados caindo, com gotas), que vêm do protótipo `../../_prototipos/mirtilos-gotas` (cena em `tools/cena.py` de lá).
 
-- mirtilos modelados com a coroa e a cera (pruína) irregular, folhas com nervuras, desfoque de câmera, luz quente de sertão e contraluz fria;
-- o loop é perfeito: cada objeto percorre um número inteiro de vãos e de voltas a cada 6 s.
+- **Quadros:** em `assets/quadros/{4k,hd,m}`. O `4k` tem 3840×2160 e vai para telas largas de alta densidade, o `hd` tem 1920×1080 e o `m` tem 1080×1920, recorte vertical para o celular em pé.
+- **Parado:** fica no **quadro 034**, o melhor da sequência, e nada se mexe. Não existe queda automática nem contador de quadros.
+- **Ao rolar:** o hero vira um trilho de 250svh com palco fixo, e o quadro anda junto com a rolagem (034 + progresso × 120, com inércia curta), para frente e para trás. O texto do hero sai suavemente entre 42% e 82% do trilho.
+- **Carga:** primeiro o 034, depois 1 a cada 16, 8, 4, 2 e 1 quadros, com 6 em paralelo.
+- **Sem animação** com `prefers-reduced-motion`, com economia de dados ou em celular deitado com menos de 560 px de altura. Nesses casos o hero fica estático no 034.
+- **Celular:** a faixa Origem/Cultivo/Linha some (ela repete os selos da seção A empresa).
+- **Conferência:** `tools/conferir_hero.py` confere com o Edge headless que o quadro fica parado sem rolagem e anda com ela.
 
-```
-blender -b -P tools/mirtilos.py -- --modo still   --saida ../_ref/render/still     # 3840x2160
-blender -b -P tools/mirtilos.py -- --modo desktop --saida ../_ref/render/desktop   # 1920x1080, 180 quadros
-blender -b -P tools/mirtilos.py -- --modo mobile  --saida ../_ref/render/mobile    # 1080x1920, 180 quadros
-python tools/processar.py hero                                                     # MP4, posters e imagens 4K
-```
-
-No site, o vídeo é escolhido pela orientação da tela (retrato ou paisagem) e só carrega depois do primeiro paint. Ele não carrega com `prefers-reduced-motion` nem com economia de dados, e pausa fora da tela.
+Os MP4 do loop anterior (mirtilos secos, luz elétrica) foram arquivados em `../_ref/render/hero-mp4-eletrico/`.
 
 ## Fotos
 
@@ -102,7 +100,8 @@ O hero e a faixa da pruína são **render 3D ilustrativo**, não fotografia da e
 
 | Script | O que faz |
 |---|---|
-| `tools/mirtilos.py` | cena 3D do hero (Blender) |
+| `tools/mirtilos.py` | cena 3D dos mirtilos secos (usada no still da faixa da pruína e na OG) |
+| `tools/conferir_hero.py` | hero por rolagem: parado no 034, anda com o scroll |
 | `tools/logo.py` | marca, wordmark e favicon SVG |
 | `tools/processar.py` | fotos, hero (MP4/posters), ícones |
 | `tools/conferir.py` | prints em 8 aparelhos + auditoria de overflow |

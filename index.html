@@ -18,8 +18,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Saira:wdth,wght@100..125,500..800&display=swap" rel="stylesheet">
-<link rel="preload" as="image" href="assets/hero/poster-desktop.webp" media="(min-aspect-ratio: 1/1)">
-<link rel="preload" as="image" href="assets/hero/poster-mobile.webp" media="(max-aspect-ratio: 1/1)">
+<link rel="preload" as="image" href="assets/quadros/hd/034.webp" media="(min-aspect-ratio: 1/1)">
+<link rel="preload" as="image" href="assets/quadros/m/034.webp" media="(max-aspect-ratio: 1/1)">
 <link rel="stylesheet" href="assets/estilo.css">
 </head>
 <body>
@@ -61,13 +61,14 @@
 
 <!-- HERO -->
 <section class="hero" id="inicio">
+ <div class="palco">
   <div class="hero-midia" aria-hidden="true">
+    <!-- quadro parado (034) até a primeira rolagem; o canvas assume a sequência de 120 quadros -->
     <picture>
-      <source media="(max-aspect-ratio: 1/1)" srcset="assets/hero/poster-mobile.webp">
-      <img class="hero-poster" src="assets/hero/poster-desktop.webp" alt="" width="1920" height="1080">
+      <source media="(max-aspect-ratio: 1/1)" srcset="assets/quadros/m/034.webp">
+      <img class="hero-poster" src="assets/quadros/hd/034.webp" alt="" width="1920" height="1080">
     </picture>
-    <video class="hero-video" muted loop playsinline preload="none"
-      data-desktop="assets/hero/mirtilos-desktop.mp4" data-mobile="assets/hero/mirtilos-mobile.mp4"></video>
+    <canvas class="hero-tela" id="tela"></canvas>
   </div>
   <div class="hero-veu" aria-hidden="true"></div>
 
@@ -81,11 +82,12 @@
     </div>
   </div>
 
-  <ul class="hero-faixa hero-item" aria-label="Destaques">
+  <ul class="hero-faixa" aria-label="Destaques">
     <li><strong>Origem</strong><span>Vale do São Francisco</span></li>
     <li><strong>Cultivo</strong><span>Sustentável</span></li>
     <li><strong>Linha</strong><span>Berries e uvas</span></li>
   </ul>
+ </div>
 </section>
 
 <!-- A EMPRESA -->

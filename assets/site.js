@@ -9,39 +9,109 @@
   var ano = document.getElementById("ano");
   if (ano) ano.textContent = new Date().getFullYear();
 
-  /* vídeo do hero: escolhe o corte pela orientação e só carrega depois do primeiro paint */
-  var video = document.querySelector(".hero-video");
-  function carregaVideo() {
-    if (!video || reduz) return;
-    var conexao = navigator.connection || {};
-    if (conexao.saveData) return;
-    var retrato = window.matchMedia("(max-aspect-ratio: 1/1)").matches;
-    var src = retrato ? video.dataset.mobile : video.dataset.desktop;
-    if (video.getAttribute("src") === src) return;
-    video.src = src;
-    video.addEventListener("canplay", function () {
-      var p = video.play();
-      if (p && p.then) p.then(function () { video.classList.add("pronto"); }).catch(function () {});
-      else video.classList.add("pronto");
-    }, { once: true });
-    video.load();
+  /* hero: 120 quadros 4K tocados pela rolagem. Parado, fica no quadro 034
+     (o melhor da sequência); nada se mexe até a pessoa rolar. */
+  var hero = document.getElementById("inicio");
+  var palco = hero.querySelector(".palco");
+  var tela = document.getElementById("tela");
+  var N = 120, PARADO = 33;            // índice 33 = arquivo 034.webp
+  var conexao = navigator.connection || {};
+  var curto = function () { return window.innerHeight < 560 && window.innerWidth > window.innerHeight; };
+  var anima = !reduz && !conexao.saveData && !!tela.getContext;
+  var ctx = anima ? tela.getContext("2d", { alpha: false }) : null;
+  var quadros = [], conjunto = "", desenhado = -1, pos = PARADO, alvo = PARADO, rodando = false, prog = 0;
+
+  function escolheConjunto() {
+    if (window.innerHeight > window.innerWidth) return "m";
+    return window.innerWidth * Math.min(window.devicePixelRatio || 1, 2) >= 2600 ? "4k" : "hd";
   }
-  if (document.readyState === "complete") setTimeout(carregaVideo, 300);
-  else window.addEventListener("load", function () { setTimeout(carregaVideo, 300); });
-  var ultimoRetrato = window.matchMedia("(max-aspect-ratio: 1/1)").matches;
-  window.addEventListener("resize", function () {
-    var r = window.matchMedia("(max-aspect-ratio: 1/1)").matches;
-    if (r !== ultimoRetrato) { ultimoRetrato = r; if (video) { video.classList.remove("pronto"); carregaVideo(); } }
-  });
-  /* pausa o vídeo fora da tela (bateria) */
-  if (video && "IntersectionObserver" in window) {
-    new IntersectionObserver(function (es) {
-      es.forEach(function (e) {
-        if (!video.src) return;
-        if (e.isIntersecting) { var p = video.play(); if (p && p.catch) p.catch(function () {}); }
-        else video.pause();
-      });
-    }, { threshold: 0.05 }).observe(video);
+  /* ordem de carga: o quadro parado primeiro, depois 1 a cada 16, 8, 4, 2, 1 */
+  function ordem() {
+    var vistos = {}, lista = [PARADO];
+    vistos[PARADO] = 1;
+    [16, 8, 4, 2, 1].forEach(function (passo) {
+      for (var i = 0; i < N; i += passo) if (!vistos[i]) { vistos[i] = 1; lista.push(i); }
+    });
+    return lista;
+  }
+  function carrega() {
+    var atual = conjunto, fila = ordem(), ativos = 0;
+    quadros = new Array(N);
+    desenhado = -1;
+    (function proximo() {
+      while (ativos < 6 && fila.length) {
+        var i = fila.shift(), img = new Image();
+        ativos++;
+        img.decoding = "async";
+        img.src = "assets/quadros/" + atual + "/" + ("00" + (i + 1)).slice(-3) + ".webp";
+        (function (i, img) {
+          var fim = function () { ativos--; if (atual === conjunto) proximo(); };
+          (img.decode ? img.decode() : Promise.resolve()).then(function () {
+            if (atual !== conjunto) return;
+            quadros[i] = img;
+            if (i === PARADO) { desenhado = -1; desenha(Math.round(pos)); tela.classList.add("pronto"); }
+          }).then(fim, fim);
+        })(i, img);
+      }
+    })();
+  }
+  function maisPerto(i) {
+    if (quadros[i]) return quadros[i];
+    for (var d = 1; d < N / 2; d++) {
+      var a = quadros[(i - d + N) % N], b = quadros[(i + d) % N];
+      if (a || b) return a || b;
+    }
+    return null;
+  }
+  function desenha(i) {
+    i = ((i % N) + N) % N;
+    var img = maisPerto(i);
+    if (!img) return;
+    var chave = quadros[i] ? i : -2 - i;
+    if (chave === desenhado) return;
+    desenhado = chave;
+    var W = tela.width, H = tela.height;
+    var s = Math.max(W / img.naturalWidth, H / img.naturalHeight);
+    var w = img.naturalWidth * s, h = img.naturalHeight * s;
+    ctx.drawImage(img, (W - w) / 2, (H - h) / 2, w, h);
+  }
+  function dimensiona() {
+    var ativo = anima && !curto();
+    hero.classList.toggle("rolagem", ativo);
+    if (!ativo) { palco.style.removeProperty("--sai"); return; }
+    var dpr = Math.min(window.devicePixelRatio || 1, 2);
+    var w = Math.round(tela.clientWidth * dpr), h = Math.round(tela.clientHeight * dpr);
+    if (tela.width !== w || tela.height !== h) { tela.width = w; tela.height = h; desenhado = -1; }
+    var novo = escolheConjunto();
+    if (novo !== conjunto) { conjunto = novo; tela.classList.remove("pronto"); carrega(); }
+    else desenha(Math.round(pos));
+  }
+  function progressoHero() {
+    var r = hero.getBoundingClientRect(), total = r.height - window.innerHeight;
+    return total > 0 ? Math.min(1, Math.max(0, -r.top / total)) : 0;
+  }
+  /* só roda enquanto há diferença entre o quadro mostrado e o da rolagem; depois para */
+  var antes = 0;
+  function passo(agora) {
+    var dt = Math.min(0.05, (agora - (antes || agora)) / 1000) || 0.016;
+    antes = agora;
+    pos += (alvo - pos) * (1 - Math.exp(-dt * 12));
+    if (Math.abs(alvo - pos) < 0.02) pos = alvo;
+    desenha(Math.round(pos));
+    if (pos !== alvo) requestAnimationFrame(passo);
+    else { rodando = false; antes = 0; }
+  }
+  function heroScroll() {
+    if (!hero.classList.contains("rolagem")) return;
+    prog = progressoHero();
+    alvo = PARADO + prog * N;
+    var sai = Math.min(1, Math.max(0, (prog - 0.42) / 0.4));
+    palco.style.setProperty("--sai", sai.toFixed(3));
+    if (!rodando && pos !== alvo) { rodando = true; requestAnimationFrame(passo); }
+  }
+  if (anima) {
+    dimensiona();
+    window.addEventListener("resize", function () { dimensiona(); heroScroll(); });
   }
 
   /* topo sólido após o hero */
@@ -157,6 +227,7 @@
     requestAnimationFrame(function () {
       agendado = false;
       topoScroll();
+      if (anima) heroScroll();
       ativo();
       if (!reduz) paralaxe();
     });
