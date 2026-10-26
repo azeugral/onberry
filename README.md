@@ -4,24 +4,33 @@ One page informativa da **On Berry** (@onberrybrasil_), empresa nacional de dese
 
 - **Publicado em:** https://azeugral.github.io/onberry/
 - **Stack:** HTML + CSS + JS puro, sem build.
-- **Fontes:** Newsreader (títulos) e Manrope (texto), pelo Google Fonts.
+- **Fontes:** Saira (títulos) e Manrope (texto), pelo Google Fonts.
 
-## Identidade
+## Identidade (hi-tech, derivada da logo oficial)
 
-| Cor | Hex | Uso |
+| Token | Hex | Uso |
 |---|---|---|
-| Noite | `#0B0C1F` | hero, Vale, rodapé |
-| Anil | `#151735` | seção Mirtilo, marca |
-| Pruína | `#B9C1DC` | detalhes sobre o escuro (a cera azulada do mirtilo) |
-| Creme | `#F4EFE4` | fundo claro, logo sobre o escuro |
-| Areia | `#EAE2D1` | seção Uvas |
-| Oliva | `#5F6B2C` | chapéus, tirado do rótulo verde da embalagem |
-| Ouro | `#C9973F` | detalhes, o sol do selo |
+| Abismo | `#020619` | fundo base |
+| Noite | `#050D2E` | seções alternadas, vidro |
+| Elétrico | `#2563FF` | botões, faixa Uvas, brilhos |
+| Ciano | `#7CD4FF` | rótulos, bordas de luz, gradiente dos títulos |
+| Gelo | `#E6F5FF` | texto de destaque |
+| Violeta | `#6D4BFF` | halo (como na arte escura da logo) |
+
+- **Tipografia:**
+  - **Saira expandida** (eixo `wdth` 112–125, peso 600–800) nos títulos, nos números e nos rótulos em caixa-alta;
+  - **Manrope** no texto corrido.
+- **Assinatura:** a **estrela de 4 pontas da logo** é o marcador do sistema (chapéus, selos, ícones dos cartões). Os títulos levam um gradiente branco → ciano → azul.
+- **Componentes:**
+  - botões **chanfrados** (canto cortado), com a seta num módulo próprio e uma faixa de luz no hover;
+  - painéis de **vidro** com borda de luz que segue o mouse (só com ponteiro fino);
+  - fotos com moldura de gradiente e revelação em clip-path.
+- **Hero 3D:** re-iluminado no azul da logo, com contraluz ciano, halo violeta e fundo elétrico. A versão índigo anterior está em `../_ref/render/v1-indigo`.
 
 - **Logo OFICIAL do cliente** (arquivo dele, RGBA, em `../_ref/logo-oficial/`), aplicada por `tools/logo_oficial.py`:
   - `assets/logo/oficial-vertical.*`: logo completa, usada no rodapé e na OG;
   - `assets/logo/simbolo.*`: só o símbolo, usado no favicon (`favicon.ico` + PNG de 32/192/512 + apple-touch, sobre o azul-noite da arte oficial);
-  - `assets/logo/horizontal-clara.svg` / `horizontal-escura.svg`: versão de leitura para o topo e para textos. É o símbolo oficial + "On-Berry" em Manrope 500 + a folhinha azul da logo.
+  - `assets/logo/horizontal-clara.svg` / `horizontal-escura.svg`: versão de leitura para o topo e para textos. É o símbolo oficial + "On-Berry" em Saira expandida 600 + a folhinha azul da logo.
 - A proposta de marca da LRGZ (mirtilo com coroa) foi descartada e está guardada em `../_ref/logo-proposta-lrgz/`.
 
 ## Hero (mirtilos caindo)

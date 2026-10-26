@@ -3,7 +3,7 @@
 Gera em assets/logo/:
   oficial-vertical.webp/png   logo completa (símbolo + On-Berry), para o rodapé
   simbolo.webp/png            só o símbolo (o "On" entrelaçado com a estrela)
-  horizontal-clara.svg        versão de leitura: símbolo + "On-Berry" em Manrope, texto creme
+  horizontal-clara.svg        versão de leitura: símbolo + "On-Berry" em Saira expandida, texto creme
   horizontal-escura.svg       idem, texto anil (fundos claros)
 e na raiz: favicon.ico, favicon-32.png, favicon-192.png, favicon-512.png, apple-touch-icon.png
 
@@ -68,8 +68,8 @@ favicon(256).save(RAIZ / "favicon.ico", sizes=[(16, 16), (32, 32), (48, 48), (64
 (RAIZ / "favicon.svg").unlink(missing_ok=True)
 
 # ---------------------------------------------------------------- horizontal de leitura
-f = TTFont(REF / "fonts" / "Manrope.ttf")
-f = instancer.instantiateVariableFont(f, {"wght": 500})
+f = TTFont(REF / "fonts" / "Saira.ttf")
+f = instancer.instantiateVariableFont(f, {"wght": 600, "wdth": 112.5})
 gs, cmap, hmtx = f.getGlyphSet(), f.getBestCmap(), f["hmtx"]
 cap = f["OS/2"].sCapHeight
 x, partes, pos_o = 0, [], None

@@ -101,6 +101,21 @@
     });
   }
 
+  /* borda de luz dos painéis de vidro acompanha o ponteiro (só com mouse) */
+  if (window.matchMedia("(hover: hover) and (pointer: fine)").matches && !reduz) {
+    [].slice.call(document.querySelectorAll(".vidro")).forEach(function (el) {
+      el.addEventListener("pointermove", function (e) {
+        var r = el.getBoundingClientRect();
+        el.style.setProperty("--mx", (e.clientX - r.left) + "px");
+        el.style.setProperty("--my", (e.clientY - r.top) + "px");
+      });
+      el.addEventListener("pointerleave", function () {
+        el.style.removeProperty("--mx");
+        el.style.removeProperty("--my");
+      });
+    });
+  }
+
   /* contagem dos números */
   var contadores = [].slice.call(document.querySelectorAll("[data-conta]"));
   function formata(el, v) {

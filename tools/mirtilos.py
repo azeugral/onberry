@@ -219,16 +219,18 @@ def mat_fundo():
     coord = nt.nodes.new("ShaderNodeTexCoord")
     grad = nt.nodes.new("ShaderNodeTexGradient"); grad.gradient_type = "SPHERICAL"
     mapa = nt.nodes.new("ShaderNodeMapping")
-    mapa.inputs["Scale"].default_value = (0.075, 0.075, 0.075)
+    mapa.inputs["Scale"].default_value = (0.105, 0.105, 0.105)
     # brilho levemente deslocado para o lado das frutas
     mapa.inputs["Location"].default_value = (-0.18, -0.05, 0) if not VERTICAL else (0, -0.22, 0)
     nt.links.new(coord.outputs["Object"], mapa.inputs["Vector"])
     nt.links.new(mapa.outputs[0], grad.inputs["Vector"])
     rampa = nt.nodes.new("ShaderNodeValToRGB")
     rampa.color_ramp.elements[0].position = 0.0
-    rampa.color_ramp.elements[0].color = (0.004, 0.005, 0.012, 1)
+    rampa.color_ramp.elements[0].color = (0.001, 0.003, 0.016, 1)
     rampa.color_ramp.elements[1].position = 1.0
-    rampa.color_ramp.elements[1].color = (0.020, 0.022, 0.060, 1)
+    rampa.color_ramp.elements[1].color = (0.020, 0.075, 0.520, 1)
+    meio = rampa.color_ramp.elements.new(0.55)
+    meio.color = (0.004, 0.014, 0.110, 1)
     nt.links.new(grad.outputs["Fac"], rampa.inputs["Fac"])
     nt.links.new(rampa.outputs["Color"], em.inputs["Color"])
     em.inputs["Strength"].default_value = 1.0
@@ -339,9 +341,10 @@ def luz(nome, loc, energia, cor, tam, alvo=(0, 0, 0)):
     o.rotation_euler = dir_.to_track_quat("-Z", "Y").to_euler()
     return o
 
-luz("chave", (-7, -9, 7), 2200, (1.0, 0.92, 0.84), 5)       # sol quente do sertao
-luz("recorte", (8, 9, 6), 3200, (0.55, 0.66, 1.0), 4)       # contraluz fria
-luz("baixo", (2, -6, -8), 380, (1.0, 0.72, 0.42), 6)        # rebote dourado
+luz("chave", (-7, -9, 7), 1700, (0.82, 0.90, 1.0), 5)        # chave fria, branco-azulado
+luz("recorte", (8, 9, 6), 5200, (0.30, 0.78, 1.0), 3.5)     # contraluz ciano (azul claro da logo)
+luz("baixo", (2, -6, -8), 900, (0.42, 0.28, 1.0), 6)         # halo violeta por baixo
+luz("recorte2", (-9, 8, -4), 2600, (0.15, 0.40, 1.0), 4)  # contraluz azul eletrico do outro lado
 
 fundo_me = bpy.data.meshes.new("fundo")
 bm = bmesh.new()
