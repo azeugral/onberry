@@ -18,11 +18,11 @@ One page informativa da **On Berry** (@onberrybrasil_), empresa nacional de dese
 | Oliva | `#5F6B2C` | chapéus, tirado do rótulo verde da embalagem |
 | Ouro | `#C9973F` | detalhes, o sol do selo |
 
-- **Marca:** um mirtilo visto de cima, com a coroa de 5 sépalas aberta em vista 3/4. O nome "On Berry" está em Newsreader convertido em curvas. Tudo é gerado por `tools/logo.py`, em `assets/logo/`:
-  - `logo-clara.svg` e `logo-escura.svg`: com o subtítulo "Vale do São Francisco";
-  - `*-simples.svg`: só a marca e o nome;
-  - `marca-*.svg`: só o símbolo.
-- **Favicon:** `favicon.svg`, mais os PNG de 32, 192 e 512 e o `apple-touch-icon.png` (gerados por `tools/processar.py icones`).
+- **Logo OFICIAL do cliente** (arquivo dele, RGBA, em `../_ref/logo-oficial/`), aplicada por `tools/logo_oficial.py`:
+  - `assets/logo/oficial-vertical.*`: logo completa, usada no rodapé e na OG;
+  - `assets/logo/simbolo.*`: só o símbolo, usado no favicon (`favicon.ico` + PNG de 32/192/512 + apple-touch, sobre o azul-noite da arte oficial);
+  - `assets/logo/horizontal-clara.svg` / `horizontal-escura.svg`: versão de leitura para o topo e para textos. É o símbolo oficial + "On-Berry" em Manrope 500 + a folhinha azul da logo.
+- A proposta de marca da LRGZ (mirtilo com coroa) foi descartada e está guardada em `../_ref/logo-proposta-lrgz/`.
 
 ## Hero (mirtilos caindo)
 
@@ -51,14 +51,40 @@ Os dados abaixo estão **genéricos ou presumidos** e precisam da versão corret
 - [ ] **WhatsApp comercial:** está como `(00) 00000-0000`.
 - [ ] **E-mail:** está como `contato@onberry.com.br`. O domínio `onberry.com` **não é deles**, ele redireciona para outra marca (lontreau.com). Definir o domínio do site.
 - [ ] **Cidade e endereço:** hoje aparece só "Vale do São Francisco". Confirmar se é Petrolina (PE), Juazeiro (BA), Lagoa Grande, Casa Nova etc.
-- [ ] **Nome da marca:** o Instagram diz "On Berry", a embalagem diz "ON BERRIES" e a foto de perfil, "On-Berry". O site usa **On Berry**.
+- [ ] **Nome da marca:** o Instagram diz "On Berry", a embalagem diz "ON BERRIES" e a foto de perfil, "On-Berry". O site usa **On-Berry**, como na logo oficial.
 - [ ] **Uvas:** quais variedades (com ou sem semente, cores) e se a uva é produção própria ou só comercialização. A bio fala em "comercialização de Berrys e Uvas".
 - [ ] **Mirtilo:** variedades, área plantada, número de plantas, ano de início e época de safra.
 - [ ] **Processo (seção Cultivo):** plantio em vasos e irrigação localizada vêm das fotos. Colheita em várias passadas e refrigeração até a expedição são o padrão do mirtilo; confirmar como eles fazem.
 - [ ] **Conservação:** "refrigerado entre 0 e 4 °C" é uma orientação genérica.
 - [ ] **Selos da seção A empresa:** confirmar "Produção própria", "Cultivo sustentável" (este está no rótulo) e "Mercado nacional". Exportam?
 - [ ] **Certificações:** GlobalG.A.P., orgânico etc., se tiverem, para criar uma faixa de selos.
-- [ ] **Logo:** a identidade foi criada do zero (a foto de perfil atual parece gerada por IA). Validar com o cliente.
+- [ ] **Logo em vetor:** o arquivo oficial é PNG/WebP (1254 px). Pedir o vetor (SVG/AI/PDF) ao cliente.
+
+## O que é verídico e o que é genérico
+
+**Comprovado (fonte: Instagram e embalagem):**
+
+- A bio: empresa nacional de desenvolvimento agrícola, voltada à comercialização de berries e uvas do Vale do São Francisco.
+- A embalagem: "Mirtilo · Cultivo Sustentável · Produzido no Vale São Francisco · 125 g".
+- As fotos de embalagem, flor e plantio em vasos (posts deles de ago e set/2026).
+- O @onberrybrasil_.
+
+**Verdadeiro, mas é da região ou da fruta, não da empresa:**
+
+- 3.000 h de sol por ano, 2,5 safras de uva por ano, ~9° S.
+- O Vale como principal polo de uva de mesa, a irrigação pelo rio e o clima seco.
+- Antocianinas, pruína, mirtilo de baixa exigência de frio e "lavar na hora".
+
+**Genérico ou presumido (escrito para o corpo da página, falta confirmar):**
+
+- Que a On-Berry *cultiva*: a bio só fala em comercialização. As fotos de plantio sugerem cultivo próprio.
+- As variedades adaptadas ao calor, a irrigação controlada e o acompanhamento técnico.
+- O sabor, a colheita manual, a seleção e a conservação entre 0 e 4 °C.
+- A linha de uvas "cultivadas em parreiral e colhidas à mão".
+- **Fotos de uva:** são posts de 2019/2020 e a da colheita tem moldura, então pode ser repost ou banco de imagem. Não há garantia de que sejam deles.
+- As 4 etapas do cultivo e os selos "Produção própria" e "Mercado nacional".
+- O WhatsApp e o e-mail (placeholders).
+- O hero e a faixa da pruína são render 3D ilustrativo, não fotografia.
 
 ## Dados regionais usados (públicos, não são da empresa)
 

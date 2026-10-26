@@ -122,8 +122,8 @@ h1, h2, h3 { font-family: var(--serif); font-weight: 400; margin: 0; letter-spac
 .topo.solido { background: rgba(11, 12, 31, .86); -webkit-backdrop-filter: blur(14px) saturate(1.2); backdrop-filter: blur(14px) saturate(1.2); box-shadow: 0 1px 0 var(--linha-clara); }
 .topo.solido .topo-in { height: 68px; }
 .topo-logo { display: block; flex: none; }
-.topo-logo img { height: 34px; width: auto; transition: height .45s var(--ease); }
-.topo.solido .topo-logo img { height: 30px; }
+.topo-logo img { height: 46px; width: auto; transition: height .45s var(--ease); }
+.topo.solido .topo-logo img { height: 38px; }
 .topo-nav { display: flex; gap: 30px; margin-left: auto; }
 .topo-nav a {
   color: var(--creme); text-decoration: none; font-size: .93rem; font-weight: 500;
@@ -244,10 +244,9 @@ body.menu-aberto { overflow: hidden; }
 
 /* empresa */
 .empresa { display: grid; grid-template-columns: .9fr 1.1fr; gap: clamp(48px, 7vw, 110px); align-items: center; }
+.empresa-fotos .foto, .grade-3 .foto { align-self: start; }
 .empresa-texto p:not(.chapeu):not(.texto-grande) { color: var(--tinta-2); }
 .empresa-fotos { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(14px, 2vw, 24px); }
-.foto-b { margin-top: clamp(40px, 7vw, 96px); }
-.foto-a { margin-bottom: clamp(40px, 7vw, 96px); }
 .selos { list-style: none; padding: 0; margin: 34px 0 0; display: flex; flex-wrap: wrap; gap: 10px; }
 .selos li {
   border: 1px solid var(--linha-escura); padding: 9px 16px; font-size: .9rem; font-weight: 500; color: var(--tinta);
@@ -290,7 +289,6 @@ body.menu-aberto { overflow: hidden; }
 
 /* uvas */
 .grade-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(16px, 2.4vw, 32px); }
-#uvas .foto:nth-child(2) { margin-top: clamp(28px, 5vw, 64px); }
 
 /* cultivo */
 .largo { margin: 0 auto clamp(48px, 6vw, 80px); max-width: 980px; }
@@ -337,7 +335,7 @@ a.canal-valor:hover { background-size: 100% 1px; }
 /* rodapé */
 .rodape { background: var(--noite); color: var(--creme); padding: clamp(64px, 8vw, 104px) 0 calc(28px + env(safe-area-inset-bottom)); }
 .rodape-in { display: flex; justify-content: space-between; align-items: flex-end; gap: 40px; flex-wrap: wrap; padding-bottom: 48px; border-bottom: 1px solid var(--linha-clara); }
-.rodape-logo { height: 64px; width: auto; }
+.rodape-logo { height: 150px; width: auto; }
 .rodape-nav { display: flex; flex-wrap: wrap; gap: 12px 28px; }
 .rodape-nav a { text-decoration: none; color: rgba(244,239,228,.75); font-size: .93rem; transition: color .3s var(--ease); }
 .rodape-nav a:hover { color: var(--creme); }
@@ -389,7 +387,6 @@ a.canal-valor:hover { background-size: 100% 1px; }
   .hero-faixa li:last-child { border-bottom: 1px solid var(--linha-clara); }
   .grade-3 { grid-template-columns: 1fr 1fr; }
   .vale-itens { grid-template-columns: 1fr; }
-  #uvas .foto:nth-child(2) { margin-top: 0; }
   #uvas .foto:nth-child(3) { grid-column: 1 / -1; }
   #uvas .foto:nth-child(3) .foto-quadro { aspect-ratio: 16 / 11; }
   .numeros { grid-template-columns: 1fr; }
@@ -405,7 +402,7 @@ a.canal-valor:hover { background-size: 100% 1px; }
   .empresa-fotos { gap: 12px; }
   .contato-acoes .btn { width: 100%; }
   .canais li { flex-direction: column; gap: 4px; padding: 18px 0; }
-  .rodape-logo { height: 54px; }
+  .rodape-logo { height: 120px; }
   .ficha div { grid-template-columns: 1fr; gap: 2px; padding: 13px 0; }
 }
 @media (max-width: 360px) {
