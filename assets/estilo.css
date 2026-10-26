@@ -162,28 +162,28 @@ h1, h2, h3 { font-family: var(--display); font-stretch: 125%; font-weight: 700; 
 body.menu-aberto { overflow: hidden; }
 
 /* ---------- hero ---------- */
-/* hero: trilho de rolagem com palco fixo. Parado no quadro 034; a sequência só anda com o scroll */
+/* hero: imagem fixa do cliente (1938×812), ancorada nas frutas da direita */
 .hero { position: relative; background: var(--abismo); }
 .palco {
-  --sai: 0;
   position: relative; min-height: 100vh; min-height: 100svh;
   display: flex; flex-direction: column; justify-content: center; overflow: hidden; isolation: isolate;
 }
-.js .hero.rolagem { height: 250vh; height: 250svh; }
-.js .hero.rolagem .palco { position: sticky; top: 0; height: 100vh; height: 100svh; min-height: 0; }
-.hero-midia { position: absolute; inset: 0; z-index: -2; }
-.hero-poster, .hero-tela { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
-.hero-tela { opacity: 0; transition: opacity .6s var(--ease); }
-.hero-tela.pronto { opacity: 1; }
+.hero-midia { position: absolute; inset: 0; z-index: -2; background: var(--abismo); }
+.hero-poster {
+  position: absolute; inset: 0; width: 100%; height: 100%; display: block;
+  object-fit: cover; object-position: 56% 50%;
+  opacity: 0; animation: heroEntra 1.4s var(--ease) .05s forwards;
+}
+@keyframes heroEntra { to { opacity: 1; } }
 .hero-veu {
   position: absolute; inset: 0; z-index: -1;
   background:
-    linear-gradient(90deg, rgba(2,6,25,.94) 0%, rgba(2,6,25,.74) 30%, rgba(2,6,25,.1) 60%, rgba(2,6,25,0) 100%),
+    linear-gradient(90deg, rgba(2,6,25,.86) 0%, rgba(2,6,25,.55) 30%, rgba(2,6,25,0) 58%),
     linear-gradient(0deg, var(--abismo) 0%, rgba(2,6,25,0) 24%),
     linear-gradient(180deg, rgba(2,6,25,.6) 0%, rgba(2,6,25,0) 20%);
 }
 .hero-conteudo { width: 100%; max-width: calc(var(--caixa) + 2 * var(--gutter)); margin: 0 auto; padding: 150px var(--gutter) 170px;
-  opacity: calc(1 - var(--sai)); transform: translate3d(0, calc(var(--sai) * -48px), 0); }
+}
 .hero-titulo {
   font-size: clamp(2.3rem, .9rem + 5vw, 5.4rem); line-height: 1; letter-spacing: -.02em;
   max-width: 13ch; margin-bottom: 28px; text-wrap: balance;
@@ -193,7 +193,6 @@ body.menu-aberto { overflow: hidden; }
 .hero-texto { max-width: 33rem; font-size: clamp(1.02rem, .97rem + .3vw, 1.16rem); color: var(--texto-2); margin-bottom: 38px; }
 .hero-acoes { display: flex; flex-wrap: wrap; gap: 14px; }
 .hero-faixa {
-  opacity: calc(1 - var(--sai));
   position: absolute; left: 0; right: 0; bottom: 0; width: 100%;
   max-width: calc(var(--caixa) + 2 * var(--gutter)); margin: 0 auto; padding: 0 var(--gutter) calc(32px + env(safe-area-inset-bottom));
   list-style: none; display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px;
@@ -371,7 +370,7 @@ a.canal-valor:hover { background-size: 100% 1px; }
 .js .visto .foto-quadro { clip-path: polygon(0 0, calc(100% - 18px) 0, 100% 18px, 100% 100%, 18px 100%, 0 calc(100% - 18px)); }
 
 @media (prefers-reduced-motion: reduce) {
-  .hero-item, .hero-faixa li { animation: none; opacity: 1; transform: none; filter: none; }
+  .hero-item, .hero-faixa li, .hero-poster { animation: none; opacity: 1; transform: none; filter: none; }
   .js [data-r] { opacity: 1; transform: none; filter: none; transition: none; }
   .js .foto-quadro { clip-path: polygon(0 0, calc(100% - 18px) 0, 100% 18px, 100% 100%, 18px 100%, 0 calc(100% - 18px)); transition: none; }
   .foto-quadro img, .pruina-img img { transform: none !important; }
@@ -397,7 +396,6 @@ a.canal-valor:hover { background-size: 100% 1px; }
   .topo-in { height: 60px; padding-left: 16px; }
   .topo-logo img { height: 38px; }
   .palco { justify-content: flex-end; }
-  .hero-veu { background: linear-gradient(0deg, rgba(2,6,25,.97) 0%, rgba(2,6,25,.84) 40%, rgba(2,6,25,.15) 70%, rgba(2,6,25,.4) 100%); }
   .hero-conteudo { padding: 110px var(--gutter) calc(40px + env(safe-area-inset-bottom)); }
   .hero-texto { margin-bottom: 28px; }
   .hero-acoes .btn { flex: 1 1 100%; }
@@ -417,6 +415,23 @@ a.canal-valor:hover { background-size: 100% 1px; }
   .rodape-logo { height: 140px; }
   .rodape-base { justify-content: center; text-align: center; }
   .ficha div { grid-template-columns: 1fr; gap: 4px; padding: 14px 0; }
+}
+/* tela em pé (celular e tablet): foto no alto, centrada no mirtilo principal; texto embaixo no escuro */
+@media (orientation: portrait) {
+  .palco { justify-content: flex-end; }
+  .hero-midia { bottom: auto; height: 62%; }
+  .hero-poster { object-position: 76% 50%; }
+  .hero-veu { background:
+      linear-gradient(0deg, var(--abismo) 0%, var(--abismo) 36%, rgba(2,6,25,.6) 46%, rgba(2,6,25,0) 60%),
+      linear-gradient(180deg, rgba(2,6,25,.55) 0%, rgba(2,6,25,0) 16%); }
+  .hero-faixa { position: static; padding-bottom: calc(28px + env(safe-area-inset-bottom)); }
+  .hero-conteudo { padding-bottom: calc(32px + env(safe-area-inset-bottom)); }
+}
+@media (orientation: portrait) and (max-height: 700px) {
+  .hero-midia { height: 52%; }
+  .hero-veu { background:
+      linear-gradient(0deg, var(--abismo) 0%, var(--abismo) 44%, rgba(2,6,25,.6) 52%, rgba(2,6,25,0) 62%),
+      linear-gradient(180deg, rgba(2,6,25,.55) 0%, rgba(2,6,25,0) 16%); }
 }
 @media (max-height: 640px) and (orientation: portrait) {
   .hero-conteudo { padding-top: 92px; }
