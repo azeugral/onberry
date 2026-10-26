@@ -18,7 +18,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Saira:wdth,wght@100..125,500..800&display=swap" rel="stylesheet">
-<link rel="preload" as="image" href="assets/img/hero-mirtilos.webp" imagesrcset="assets/img/hero-mirtilos-1300.webp 1300w, assets/img/hero-mirtilos.webp 1938w" imagesizes="(orientation: portrait) 300vw, 100vw">
+<link rel="preload" as="image" href="assets/img/hero-mirtilos.webp" imagesrcset="assets/img/hero-mirtilos-1300.webp 1300w, assets/img/hero-mirtilos.webp 1938w" imagesizes="100vw" media="(orientation: landscape)">
+<link rel="preload" as="image" href="assets/img/hero-mirtilos-mobile-1440.webp" imagesrcset="assets/img/hero-mirtilos-mobile-940.webp 940w, assets/img/hero-mirtilos-mobile-1440.webp 1440w" imagesizes="125vw" media="(orientation: portrait)">
 <link rel="stylesheet" href="assets/estilo.css">
 </head>
 <body>
@@ -62,9 +63,14 @@
 <section class="hero" id="inicio">
  <div class="palco">
   <div class="hero-midia" aria-hidden="true">
-    <img class="hero-poster" src="assets/img/hero-mirtilos.webp"
-      srcset="assets/img/hero-mirtilos-1300.webp 1300w, assets/img/hero-mirtilos.webp 1938w" sizes="(orientation: portrait) 300vw, 100vw"
-      alt="" width="1938" height="812" fetchpriority="high">
+    <picture>
+      <!-- em pé: arte vertical própria (9:16); deitado: arte panorâmica -->
+      <source media="(orientation: portrait)" sizes="125vw"
+        srcset="assets/img/hero-mirtilos-mobile-940.webp 940w, assets/img/hero-mirtilos-mobile-1440.webp 1440w">
+      <img class="hero-poster" src="assets/img/hero-mirtilos.webp"
+        srcset="assets/img/hero-mirtilos-1300.webp 1300w, assets/img/hero-mirtilos.webp 1938w" sizes="100vw"
+        alt="" width="1938" height="812" fetchpriority="high">
+    </picture>
   </div>
   <div class="hero-veu" aria-hidden="true"></div>
 

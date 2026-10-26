@@ -39,7 +39,8 @@ O hero usa a **imagem fixa enviada pelo cliente**: mirtilos molhados com folhas,
 
 - **Arquivos:** `assets/img/hero-mirtilos.webp` (1938 px) e `-1300.webp`, escolhidos por `srcset`. Em tela em pé o `sizes` pede a maior, porque a foto aparece ampliada.
 - **PC e celular deitado:** a foto ocupa o hero inteiro com `object-position: 56%`, para o mirtilo principal ficar à direita do texto.
-- **Tela em pé (celular e tablet):** a foto ocupa os 62% de cima (52% em telas baixas), centrada na fruta (`76%`), e se funde no fundo escuro onde fica o texto. Assim ela não é esticada além da resolução.
+- **Tela em pé (celular e tablet):** usa a **arte vertical do cliente** (`hero-mirtilos-mobile-940/1440.webp`, original 940×1672, 9:16) em tela cheia, via `<picture>` com `media="(orientation: portrait)"`. As frutas ficam no alto e o texto no escuro embaixo.
+- **Resolução:** as artes recebidas são menores que 4K (horizontal 1938×812, vertical 940×1672). A versão 1440 da vertical é uma ampliação Lanczos com nitidez leve. Para ficar perfeito em iPhone 3x, pedir a vertical em **2160×3840** e a horizontal em **3840×2160** (zonas seguras no histórico da conversa/memória).
 - **Animação:** só um fade de entrada; a imagem é estática.
 - **Histórico:** antes houve um loop MP4 (`../_ref/render/hero-mp4-eletrico/`) e uma sequência de 120 quadros pela rolagem (protótipo `_prototipos/mirtilos-gotas`). O cliente preferiu a imagem fixa.
 - **OG (`assets/img/og.jpg`):** usa a mesma foto com a logo oficial.

@@ -416,22 +416,20 @@ a.canal-valor:hover { background-size: 100% 1px; }
   .rodape-base { justify-content: center; text-align: center; }
   .ficha div { grid-template-columns: 1fr; gap: 4px; padding: 14px 0; }
 }
-/* tela em pé (celular e tablet): foto no alto, centrada no mirtilo principal; texto embaixo no escuro */
+/* tela em pé (celular e tablet): arte vertical em tela cheia, frutas no alto e texto no escuro embaixo */
 @media (orientation: portrait) {
   .palco { justify-content: flex-end; }
-  .hero-midia { bottom: auto; height: 62%; }
-  .hero-poster { object-position: 76% 50%; }
+  .hero-poster { object-position: 58% 0%; }
   .hero-veu { background:
-      linear-gradient(0deg, var(--abismo) 0%, var(--abismo) 36%, rgba(2,6,25,.6) 46%, rgba(2,6,25,0) 60%),
-      linear-gradient(180deg, rgba(2,6,25,.55) 0%, rgba(2,6,25,0) 16%); }
+      linear-gradient(0deg, rgba(2,6,25,.92) 0%, rgba(2,6,25,.7) 30%, rgba(2,6,25,0) 52%),
+      linear-gradient(180deg, rgba(2,6,25,.5) 0%, rgba(2,6,25,0) 14%); }
   .hero-faixa { position: static; padding-bottom: calc(28px + env(safe-area-inset-bottom)); }
   .hero-conteudo { padding-bottom: calc(32px + env(safe-area-inset-bottom)); }
 }
 @media (orientation: portrait) and (max-height: 700px) {
-  .hero-midia { height: 52%; }
   .hero-veu { background:
-      linear-gradient(0deg, var(--abismo) 0%, var(--abismo) 44%, rgba(2,6,25,.6) 52%, rgba(2,6,25,0) 62%),
-      linear-gradient(180deg, rgba(2,6,25,.55) 0%, rgba(2,6,25,0) 16%); }
+      linear-gradient(0deg, rgba(2,6,25,.94) 0%, rgba(2,6,25,.78) 42%, rgba(2,6,25,.2) 62%, rgba(2,6,25,0) 72%),
+      linear-gradient(180deg, rgba(2,6,25,.5) 0%, rgba(2,6,25,0) 14%); }
 }
 @media (max-height: 640px) and (orientation: portrait) {
   .hero-conteudo { padding-top: 92px; }
